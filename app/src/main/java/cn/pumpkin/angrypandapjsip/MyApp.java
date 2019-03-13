@@ -267,7 +267,7 @@ class MyAccountConfig {
 class MyApp {
     static {
         try {
-            System.loadLibrary("openh264");
+            // System.loadLibrary("openh264");
             // Ticket #1937: libyuv is now included as static lib
             //System.loadLibrary("yuv");
         } catch (UnsatisfiedLinkError e) {
@@ -341,7 +341,7 @@ class MyApp {
 
 	/* Set ua config. */
         UaConfig ua_cfg = epConfig.getUaConfig();
-        ua_cfg.setUserAgent("Pjsua2 Android " + ep.libVersion().getFull());
+        ua_cfg.setUserAgent("Pjsua2 Android 刘志保" + ep.libVersion().getFull());
 
 	/* STUN server. */
         //StringVector stun_servers = new StringVector();

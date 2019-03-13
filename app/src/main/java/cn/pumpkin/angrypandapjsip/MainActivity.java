@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pumpkin.angrypandapjsip.save.StorageManager;
+
 public class MainActivity extends Activity implements Handler.Callback, MyAppObserver
 {
     public static MyApp app = null;
@@ -121,6 +123,8 @@ public class MainActivity extends Activity implements Handler.Callback, MyAppObs
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        StorageManager.getInstance().init(getApplicationContext());
+
         if (app == null) {
             app = new MyApp();
             // Wait for GDB to init, for native debugging only
@@ -198,7 +202,7 @@ public class MainActivity extends Activity implements Handler.Callback, MyAppObs
     {
         switch (item.getItemId()) {
             case R.id.action_acc_config:
-                dlgAccountSetting();
+                // dlgAccountSetting();
                 break;
 
             case R.id.action_quit:
@@ -324,7 +328,7 @@ public class MainActivity extends Activity implements Handler.Callback, MyAppObs
     }
 
 
-    private void dlgAccountSetting()
+    public void dlgAccountSetting(View v)
     {
         LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.dlg_account_config, null);
@@ -372,6 +376,12 @@ public class MainActivity extends Activity implements Handler.Callback, MyAppObs
                         String proxy 	 = etProxy.getText().toString();
                         String username  = etUser.getText().toString();
                         String password  = etPass.getText().toString();
+
+                        StorageManager.getInstance().getDefaultISP(getApplicationContext()).putApply("acc_id",acc_id);
+                        StorageManager.getInstance().getDefaultISP(getApplicationContext()).putApply("registrar",registrar);
+                        StorageManager.getInstance().getDefaultISP(getApplicationContext()).putApply("proxy",proxy);
+                        StorageManager.getInstance().getDefaultISP(getApplicationContext()).putApply("username",username);
+                        StorageManager.getInstance().getDefaultISP(getApplicationContext()).putApply("password",password);
 
                         accCfg.setIdUri(acc_id);
                         accCfg.getRegConfig().setRegistrarUri(registrar);

@@ -23,6 +23,14 @@
         android:orientation="horizontal" >
 
         <ImageButton
+            android:id="@+id/action_acc_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="dlgAccountSetting"
+            android:src="@android:drawable/ic_menu_manage" />
+
+        <ImageButton
             android:id="@+id/buttonCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
